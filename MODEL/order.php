@@ -52,7 +52,7 @@ class Order
         INNER JOIN pickup p ON p.id = o.pickup
         INNER JOIN product_order po ON po.order = o.id
         INNER JOIN product pr ON pr.id = po.product
-        GROUP BY o.id";
+        GROUP BY c.id, o.id";
         $stmt = $this->conn->query($query);
         return $stmt;
     }
