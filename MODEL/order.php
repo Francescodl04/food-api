@@ -43,16 +43,16 @@ class Order
     function getArchiveBriefOrder()
     {
         $query = 
-        "select o.id as \"ID Ordine\", u.name as \"Nome utente\", u.surname as \"Cognome utente\", c.`year` as \"Classe\", c.`section` as \"Sezione\", p.name as \"Punto di ritiro\", b.time as \"Orario di ritiro\", group_concat(pr.name) as \"Prodotti ordinati\", sum(pr.price) as \"Prezzo totale\"
-        from `order` o 
-        inner join user u on u.id=o.user
-        inner join user_class uc on uc.user=u.id
-        inner join class c on c.id=uc.class
-        inner join break b on b.id=o.break
-        inner join pickup p on p.id=o.pickup
-        inner join product_order po on po.order=o.id
-        inner join product pr on pr.id=po.product
-        group by o.id;";
+        "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", b.time AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
+        FROM `order` o 
+        INNER JOIN user u ON u.id = o.user
+        INNER JOIN user_class uc ON uc.user = u.id
+        INNER JOIN class c ON c.id = uc.class
+        INNER JOIN break b ON b.id = o.break
+        INNER JOIN pickup p ON p.id = o.pickup
+        INNER JOIN product_order po ON po.order = o.id
+        INNER JOIN product pr ON pr.id = po.product
+        GROUP BY o.id";
         $stmt = $this->conn->query($query);
         return $stmt;
     }
