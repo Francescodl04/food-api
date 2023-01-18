@@ -18,7 +18,7 @@ class SessionToken
 
     public function createToken($user, $token)
     {
-        $query = "INSERT INTO $this->table_name (`token`, user`) VALUES ($token, $user)"
+        $query = "INSERT INTO $this->table_name (`token`, user`) VALUES ($token, $user)";
         $stmt = $this->conn->query($query);
         return $stmt;
     }
