@@ -1,30 +1,25 @@
 <?php
-    require("../../COMMON/connect.php");
-    require("../../MODEL/sessionToken.php");
+require __DIR__ . '/../../COMMON/connect.php';
+require __DIR__ . '/../../MODEL/session_token.php';
 
-    // header("Content-type: application/json; charset=UTF-8");
-    header("Access-Control-Allow-Origin: *");
+header("Content-type: application/json; charset=UTF-8");
 
-    $data = json_decode(file_get_contents("php://input"));
+$data = json_decode(file_get_contents("php://input"));
 
-    if (empty($data->token) || empty($data->user)) {
-        http_response_code(400);
-        echo json_encode(["message" => "Bad request"]);
-        die();
-    }
-
-    $db = new Database();
-    $db_conn = $db->connect();
-    $sessionToken = new SessionToken($db_conn);
-
-    $result = $sessionToken->createToken($data->user, $data->token);
-
-    if ($result != false) {
-        http_response_code(200);
-        echo json_encode(["response" => true]);
-    } else {
-        http_response_code(401);
-        echo json_encode(["response" => false]);
-    }
+if (empty($data->token) || empty($data->user)) {
+    http_response_code(400);
+    echo json_encode(["message" => "Fill every field"]);
     die();
+}
+
+$db = new Database();
+$db_conn = $db->connect();
+$session_token = new SessionToken($db_conn);
+
+if (createToken($data->user, $data->token) == true) {
+    $userID = $user->login($data->email, $data->password);
+    echo json_encode(["message" => "Registration completed", "userID" => $userID]);
+} else {
+    echo json_encode(["message" => "Registration failed successfully "]);
+}
 ?>
