@@ -40,7 +40,7 @@ class Order
         return $stmt;
     }
 
-    function getArchiveBriefOrder()
+    function getArchiveBriefOrder() //Permette di ottenere l'ordine con diverse informazioni aggiuntive
     {
         $query = 
         "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", DATE_FORMAT(DATE(o.created), '%d-%m-%Y') AS \"order_creation_date\", TIME_FORMAT(b.time, '%H:%i') AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
