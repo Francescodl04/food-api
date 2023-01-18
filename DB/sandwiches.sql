@@ -145,6 +145,13 @@ CREATE  TABLE sandwiches.reset (
 	expires              TIMESTAMP  NOT NULL DEFAULT (CURRENT_TIMESTAMP + 21600),
 	completed            BOOLEAN  NOT NULL DEFAULT (FALSE)
  );
+ 
+CREATE TABLE sandwiches.session_token ( 
+	id int PRIMARY KEY AUTO_INCREMENT, 
+	token varchar(32) NOT NULL, 
+	user int NOT NULL, 
+	expiry datetime NOT NULL 
+); 
 
 ALTER TABLE sandwiches.cart ADD CONSTRAINT fk_cart_product FOREIGN KEY ( product ) REFERENCES sandwiches.product ( id );
 
@@ -193,3 +200,5 @@ ALTER TABLE sandwiches.user_class  ADD CONSTRAINT fk_user_class_class FOREIGN KE
 ALTER TABLE sandwiches.product_offer ADD CONSTRAINT fk_product_offer_product FOREIGN KEY ( product ) REFERENCES sandwiches.product ( id );
 
 ALTER TABLE sandwiches.product_offer  ADD CONSTRAINT fk_product_offer_offer FOREIGN KEY ( offer ) REFERENCES sandwiches.offer ( id );
+
+ALTER TABLE sandwiches.session_token  ADD CONSTRAINT fk_user_session_token FOREIGN KEY ( user ) REFERENCES sandwiches.user ( id );
