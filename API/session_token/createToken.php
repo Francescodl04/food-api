@@ -1,34 +1,30 @@
 <?php
     require("../../COMMON/connect.php");
-    require("../../MODEL/sessionToken.php");
+    require("../../MODEL/user.php");
 
-    header("Access-Control-Allow-Origin: *");
-    header("Content-Type: application/json; charset=UTF-8");
-
-    $database = new Database();
-    $db = $database->connect();
+    header("Content-type: application/json; charset=UTF-8");
+    header('Access-Control-Allow-Origin: *');
 
     $data = json_decode(file_get_contents("php://input"));
 
-
-    if(empty($data) || empty($data->token) || empty($data->user)){
+    if (empty($data->email) || empty($data->password)) {
         http_response_code(400);
-        json_encode(array("Message" => "Bad request"));
+        echo json_encode(["message" => "Fill every field"]);
         die();
     }
-    echo($data->token);
-    echo($data->user);
 
-    $sessionToken = new SessionToken($db);
-    if(!empty($record = $sessionToken->createToken($data->user, $data->token)))
-    {
-        http_response_code(201);
-        echo json_encode(array("Message"=> "Created"));
-    }
-    else
-    {
-        http_response_code(503);
-        echo json_encode(array("Message"=>'Error'));
-    }
+    $db = new Database();
+    $db_conn = $db->connect();
+    $user = new User($db_conn);
 
+    $result = $user->login($data->email, $data->password);
+
+    if ($result != false) {
+        http_response_code(200);
+        echo json_encode(["response" => true, "userID" => $result]);
+    } else {
+        http_response_code(401);
+        echo json_encode(["response" => false]);
+    }
+    die();
 ?>
