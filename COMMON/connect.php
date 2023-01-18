@@ -9,8 +9,8 @@ class Database
 
     //credentials localhost
     private $server_local = "localhost";
-    private $user_local = "root";
-    private $passwd_local = "";
+    private $user_local = "admin";
+    private $passwd_local = "Pnsft_420!";
     private $db_local = "sandwiches";
 
     //common credentials
