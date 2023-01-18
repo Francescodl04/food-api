@@ -3,6 +3,7 @@ require("../../COMMON/connect.php");
 require("../../MODEL/user.php");
 
 header("Content-type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: *');
 
 $data = json_decode(file_get_contents("php://input"));
 
