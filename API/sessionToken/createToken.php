@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../../COMMON/connect.php';
-require __DIR__ . '/../../MODEL/session_token.php';
+require __DIR__ . '/../../MODEL/sessionToken.php';
 
 header("Content-type: application/json; charset=UTF-8");
 
