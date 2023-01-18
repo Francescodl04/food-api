@@ -17,7 +17,7 @@
     }
 
     $sessionToken = new SessionToken($db);
-    if(!empty($record = $offer->createToken($data->user, $data->token)))
+    if(!empty($record = $sessionToken->createToken($data->user, $data->token)))
     {
         http_response_code(201);
         echo json_encode(array("Message"=> "Created"));
