@@ -24,6 +24,7 @@ if ($stmt->num_rows > 0) {
             'user_name_surname' => $user_name_surname,
             'class' => $class,
             'pickup_point' => $pickup_point,
+            'order_creation_date' => $order_creation_date,
             'pickup_time' => $pickup_time,
             'ordered_products' => $ordered_products,
             'total_price' => $total_price
@@ -35,6 +36,7 @@ if ($stmt->num_rows > 0) {
             'order_id' => $order_first_array[$i]['order_id'],
             'user_name_surname' => $order_first_array[$i]['user_name_surname'],
             'pickup_point' => $order_first_array[$i]['pickup_point'],
+            'order_creation_date' => $order_first_array[$i]['order_creation_date'],
             'pickup_time' => $order_first_array[$i]['pickup_time'],
             'ordered_products' => $order_first_array[$i]['ordered_products'],
             'total_price' => $order_first_array[$i]['total_price']

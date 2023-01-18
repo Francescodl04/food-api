@@ -43,7 +43,7 @@ class Order
     function getArchiveBriefOrder()
     {
         $query = 
-        "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", b.time AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
+        "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", DATE_FORMAT(DATE(o.created), '%d-%m-%Y') AS \"order_creation_date\", TIME_FORMAT(b.time, '%H:%i') AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
         FROM `order` o 
         INNER JOIN user u ON u.id = o.user
         INNER JOIN user_class uc ON uc.user = u.id
