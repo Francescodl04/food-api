@@ -362,5 +362,23 @@
             "Field": "year",
             "Type": "year(4)"
         }
+    ],
+    "session_token": [
+        {
+            "Field": "id",
+            "Type": "int(10) unsigned"
+        },
+        {
+            "Field": "token",
+            "Type": "varchar(128)"
+        },
+        {
+            "Field": "expiry",
+            "Type": "timestamp"
+        },
+        {
+            "Field": "user",
+            "Type": "int(10) unsigned"
+        }
     ]
 }
