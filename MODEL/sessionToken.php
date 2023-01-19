@@ -11,17 +11,14 @@ class SessionToken
 
     public function getUserByToken($token)
     {
-        $query = "SELECT  FROM $this->table_name st 
-        INNER JOIN `user` u 
-        ON st.`user` = u.id
-        WHERE st.token = '$token'";
+        $query = "SELECT * FROM $this->table_name WHERE token = '$token'";
         $stmt = $this->conn->query($query);
         return $stmt;
     }
 
     public function createToken($user, $token, $expiry)
     {
-        $query = "INSERT INTO $this->table_name (token, `user`, expiry) VALUES (\"token\", $user, \"$expiry\");";
+        $query = "INSERT INTO $this->table_name (token, `user`, expiry) VALUES (\"$token\", $user, \"$expiry\");";
         $stmt = $this->conn->query($query);
         return $stmt;
     }

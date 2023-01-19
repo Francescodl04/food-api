@@ -21,7 +21,7 @@ if(empty($token)){
     echo json_encode(["message" => "Token is empty"]);
     die();
 }
-echo("Token " . $token);
+
 $sessionToken = new SessionToken($db);
 
 $stmt = $sessionToken->getUserByToken($token);
