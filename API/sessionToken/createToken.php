@@ -3,6 +3,7 @@ require __DIR__ . '/../../COMMON/connect.php';
 require __DIR__ . '/../../MODEL/sessionToken.php';
 
 header("Content-type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: *");
 
 $data = json_decode(file_get_contents("php://input"));
 
