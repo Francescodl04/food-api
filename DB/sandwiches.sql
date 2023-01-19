@@ -148,9 +148,9 @@ CREATE  TABLE sandwiches.reset (
  
 CREATE  TABLE sandwiches.session_token ( 
 	id                   INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	token                VARCHAR(32),
-	expiry               TIMESTAMP  DEFAULT (CURRENT_TIMESTAMP + 120)  NOT NULL,
-	`user` 				 INT UNSIGNED NOT NULL
+    	`user` 		     INT UNSIGNED NOT NULL,
+	token                VARCHAR(32) NOT NULL,
+	expiry               TIMESTAMP NOT NULL
  );
 
 ALTER TABLE sandwiches.cart ADD CONSTRAINT fk_cart_product FOREIGN KEY ( product ) REFERENCES sandwiches.product ( id );
