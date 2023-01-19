@@ -8,7 +8,7 @@ class Database
     private $db = "smart_sandwich_5f";
 
     //credentials localhost
-    private $server_local = "localhost";
+    private $server_local = "paninos.ddns.net";
     private $user_local = "admin";
     private $passwd_local = "Pnsft_420!";
     private $db_local = "sandwiches";

@@ -21,12 +21,12 @@ if(empty($token)){
     echo json_encode(["message" => "Token is empty"]);
     die();
 }
-
+echo("Token " . $token);
 $sessionToken = new SessionToken($db);
 
 $stmt = $sessionToken->getUserByToken($token);
 
-if ($stmt->num_rows > 0) 
+if ($stmt != false && $stmt->num_rows > 0) 
 {
     $sessionToken_arr = array();
 
