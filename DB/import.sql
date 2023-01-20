@@ -7,7 +7,9 @@ VALUES
 ('Alessio', 'Modonesi', 'alessio.modonesi@iisviolamarchesini.edu.it', '1234'),
 ('Mattia', 'Gallinaro', 'mattia.gallinaro@iisviolamarchesini.edu.it', '5678'),
 ('Mattia', 'Zanini', 'mattia.zanini@iisviolamarchesini.edu.it', '4321'),
-('Christian', 'Mondini', 'christian.mondini@iisviolamarchesini.edu.it', '8765');
+('Christian', 'Mondini', 'christian.mondini@iisviolamarchesini.edu.it', '8765'),
+('Giancarlo','Verdi','giancarlo.verdi@gmail.com','vendor1234'),
+('Simonetta','Andrioli','simonetta.andrioli@iisviolamarchesini.edu.it','simonetta1234');
 
 INSERT INTO reset(`user`, password, expires, completed)
 VALUES
@@ -206,3 +208,21 @@ VALUES
 ('1', '2', '4'),
 ('2', '1', '3'),
 ('3', '3', '2');
+
+
+INSERT INTO permission (permission) 
+VALUES 
+('Administrator'),
+('User'),
+('Vendor'),
+('Developer');
+
+INSERT INTO `user_permission`(`user`, permission) 
+VALUES 
+(1,4),
+(2,2),
+(3,2),
+(4,2),
+(5,2),
+(6,3),
+(7,1);

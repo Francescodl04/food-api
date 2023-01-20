@@ -148,9 +148,19 @@ CREATE  TABLE sandwiches.reset (
  
 CREATE  TABLE sandwiches.session_token ( 
 	id                   INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-    	`user` 		     INT UNSIGNED NOT NULL,
+	`user` 		     	 INT UNSIGNED NOT NULL,
 	token                VARCHAR(32) NOT NULL,
 	expiry               TIMESTAMP NOT NULL
+ );
+
+ CREATE  TABLE sandwiches.permission ( 
+	id                   INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	permission           VARCHAR(128)  NOT NULL     
+ );
+
+ CREATE TABLE sandwiches.user_permission(
+	`user`				INT UNSIGNED NOT NULL,
+	permission 			INT UNSIGNED NOT NULL
  );
 
 ALTER TABLE sandwiches.cart ADD CONSTRAINT fk_cart_product FOREIGN KEY ( product ) REFERENCES sandwiches.product ( id );
@@ -202,3 +212,7 @@ ALTER TABLE sandwiches.product_offer ADD CONSTRAINT fk_product_offer_product FOR
 ALTER TABLE sandwiches.product_offer  ADD CONSTRAINT fk_product_offer_offer FOREIGN KEY ( offer ) REFERENCES sandwiches.offer ( id );
 
 ALTER TABLE sandwiches.session_token ADD CONSTRAINT fk_user_session_token FOREIGN KEY ( `user` ) REFERENCES sandwiches.`user` ( id ); 
+
+ALTER TABLE sandwiches.user_permission ADD CONSTRAINT fk_user_id FOREIGN KEY ( `user` ) REFERENCES sandwiches.user ( id );
+
+ALTER TABLE sandwiches.user_permission ADD CONSTRAINT fk_permission_id FOREIGN KEY ( permission ) REFERENCES sandwiches.permission ( id );
