@@ -1,6 +1,6 @@
 <?php
-require("../../COMMON/connect.php");
-require("../../MODEL/product.php");
+require("/../../COMMON/connect.php");
+require("/../../MODEL/product.php");
 
 
 $database = new Database();

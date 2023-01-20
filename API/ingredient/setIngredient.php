@@ -1,6 +1,6 @@
 <?php
-require("../../COMMON/connect.php");
-require("../../MODEL/product.php");
+require("/../../COMMON/connect.php");
+require("/../../MODEL/product.php");
 
 if (isset($_GET["name"]))
     $name = $_GET["name"];

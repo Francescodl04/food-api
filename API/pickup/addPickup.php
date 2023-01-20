@@ -2,8 +2,8 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-include_once dirname(__FILE__) . '/../../../COMMON/connect.php';
-include_once dirname(__FILE__) . '/../../../MODEL/pickup.php';
+include_once dirname(__FILE__) . '/../../COMMON/connect.php';
+include_once dirname(__FILE__) . '/../../MODEL/pickup.php';
 
 $data = json_decode(file_get_contents('php://input'));
 

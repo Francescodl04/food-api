@@ -1,6 +1,6 @@
 <?php
-require("../../COMMON/connect.php");
-require("../../MODEL/product.php");
+require("/../../COMMON/connect.php");
+require("/../../MODEL/product.php");
 
 if (!isset($_GET["panino"]) || empty($_GET['panino'])){
     http_response_code(400);

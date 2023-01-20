@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . "/../../../COMMON/connect.php";
-require __DIR__ . '/../../../MODEL/favourite.php';
+require __DIR__ . "/../../COMMON/connect.php";
+require __DIR__ . '/../../MODEL/favourite.php';
 header("Content-type: application/json; charset=UTF-8");
 
 

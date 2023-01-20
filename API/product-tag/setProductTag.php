@@ -13,8 +13,8 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-include_once dirname(__FILE__) . '/../../../COMMON/connect.php';
-include_once dirname(__FILE__) . '/../../../MODEL/productTag.php';
+include_once dirname(__FILE__) . '/../../COMMON/connect.php';
+include_once dirname(__FILE__) . '/../../MODEL/productTag.php';
 
 $database = new Database();
 $db_connection = $database->connect();
