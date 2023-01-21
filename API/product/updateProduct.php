@@ -11,7 +11,7 @@ $db = $database->connect();
 $data = json_decode(file_get_contents("php://input"));
 
 if(empty($data) || empty($data->id) || empty($data->name) || empty($data->price) || empty($data->quantity)){
-    echo("data:" . $data);
+    echo("data:" . $data->id);
     http_response_code(400);
     die(json_encode(array("Message" => "Bad request")));
 }
