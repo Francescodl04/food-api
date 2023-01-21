@@ -74,8 +74,7 @@ if ($stmt->num_rows > 0)
     return $json;
 }
 else {
-    echo "No record";
-    http_response_code(200);
+    http_response_code(204);
 }
 
 ?>
