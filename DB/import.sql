@@ -166,7 +166,8 @@ VALUES
 ('Completato'),
 ('Da ritirare'),
 ('Annullato'),
-('Da preparare');
+('Da preparare'),
+('Ritirato');
 
 INSERT INTO break(`time`)
 VALUES

@@ -304,6 +304,8 @@ class Order
         return $orders;
     }
 
+    //Funzione per far passare un ordine allo stato di "Completato"
+
     public function updateToCompleted($id)
     {
         $query = "UPDATE $this->table_name  o

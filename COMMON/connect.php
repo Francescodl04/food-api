@@ -8,10 +8,18 @@ class Database
     private $db = "smart_sandwich_5f";
 
     //credentials localhost
-    private $server_local = "paninos.ddns.net";
-    private $user_local = "admin";
-    private $passwd_local = "Pnsft_420!";
+
+    private $server_local = "localhost";
+    private $user_local = "root";
+    private $passwd_local = "";
     private $db_local = "sandwiches";
+
+
+    //credentials Raspberry
+    private $server_raspberry = "paninos.ddns.net";
+    private $user_raspberry = "admin";
+    private $passwd_raspberry = "Pnsft_420!";
+    private $db_raspberry = "sandwiches";
 
     //common credentials
     private $port = "3306";
@@ -21,7 +29,7 @@ class Database
 
     {
         try {
-            $this->conn = new mysqli($this->server_local, $this->user_local, $this->passwd_local, $this->db_local, $this->port);
+            $this->conn = new mysqli($this->server_raspberry, $this->user_raspberry, $this->passwd_raspberry, $this->db_raspberry, $this->port);
         }
         //la classe mysqli non estende l'interfaccia Throwable e non può essere usata come un'eccezione. 
         catch (Exception $ex) {
