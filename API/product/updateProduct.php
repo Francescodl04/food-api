@@ -9,15 +9,14 @@ $database = new Database();
 $db = $database->connect();
 
 $data = json_decode(file_get_contents("php://input"));
-
+echo($data);
 if(empty($data) || empty($data->id) || empty($data->name) || empty($data->price) || empty($data->quantity)){
-    echo("data:" . $data->id);
     http_response_code(400);
     die(json_encode(array("Message" => "Bad request")));
 }
 
 
-$product= new Product($db);
+$product = new Product($db);
 $stmt = $product->updateProduct($data->id, $data->name, $data->price, $data->quantity);
 
 if ($stmt != false) {
