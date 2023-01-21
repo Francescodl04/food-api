@@ -31,7 +31,7 @@ class User extends BaseController
 
     public function getArchiveUsers(){
         $sql = sprintf(
-            "SELECT u.name, u.surname, u.email, c.year, c.section, uc.year as 'school_year' , u.active
+            "SELECT u.name, u.surname, u.email, c.year, c.section, uc.year as 'school_year', u.active
             FROM `user` u 
             INNER JOIN user_class uc
             ON u.id = uc.user
