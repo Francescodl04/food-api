@@ -5,7 +5,7 @@ class ProductController extends BaseController
     public function GetProduct($product_id) //mostra un singolo prodotto
 
     {
-        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.name as 'Tag', p.description as 'Descrizione'
+        $sql = "SELECT distinct p.id, p.name, p.price, t.name as 'tag', p.description
                 from product p
                 left join product_tag pt on pt.product=p.id
                 left join tag t on t.id=pt.tag

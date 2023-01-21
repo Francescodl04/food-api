@@ -2,6 +2,7 @@
 require("../../COMMON/connect.php");
 require("../../MODEL/product.php");
 
+header("Access-Control-Allow-Origin: *");
 
 $database = new Database();
 $db_connection = $database->connect();
