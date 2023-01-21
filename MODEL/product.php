@@ -17,7 +17,7 @@ class ProductController extends BaseController
     public function GetArchiveProducts() //mostra tutti i prodotti
 
     {
-        $sql = "SELECT distinct p.id, p.name, p.description, p.price, p.quantity, p.active
+        $sql = "SELECT distinct p.id, p.name, p.description, p.price, p.quantity, p.active, t.name as 'tag'
                 from product p
                 left join product_tag pt on pt.product=p.id
                 left join tag t on t.id=pt.tag
