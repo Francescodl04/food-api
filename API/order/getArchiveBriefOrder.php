@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * API pervisualizzare un ordine con l'utente, la classe, data, ora, data e luogo di ritiro, prodotti ordinati e prezzo totale
+ * Realizzato dal gruppo Rossi, Di Lena, Marchetto G., Lavezzi, Ferrari
+ * Classe 5F
+ * A.S. 2022-2023
+ **/
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -10,7 +18,13 @@ $db = $database->connect();
 
 $order = new Order($db);
 
-$stmt = $order->getArchiveBriefOrder();
+$stmt;
+
+if (isset($_GET['status_ID'])) {
+    $stmt = $order->getArchiveBriefOrderOnStatus($_GET['status_ID']);
+} else {
+    $stmt = $order->getArchiveBriefOrder();
+}
 
 if ($stmt->num_rows > 0) {
     $order_first_array = array();

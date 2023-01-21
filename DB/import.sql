@@ -163,9 +163,10 @@ VALUES
 -- order
 INSERT INTO `status`(description)
 VALUES
-('ordinato'),
-('pronto'),
-('annullato');
+('Completato'),
+('Da ritirare'),
+('Annullato'),
+('Da preparare');
 
 INSERT INTO break(`time`)
 VALUES

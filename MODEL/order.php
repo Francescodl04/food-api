@@ -41,9 +41,10 @@ class Order
     }
 
     function getArchiveBriefOrder() //Permette di ottenere l'ordine con diverse informazioni aggiuntive
+
     {
-        $query = 
-        "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", DATE_FORMAT(DATE(o.created), '%d-%m-%Y') AS \"order_creation_date\", TIME_FORMAT(b.time, '%H:%i') AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
+        $query =
+            "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", DATE_FORMAT(DATE(o.created), '%d-%m-%Y') AS \"order_creation_date\", TIME_FORMAT(b.time, '%H:%i') AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
         FROM `order` o 
         INNER JOIN user u ON u.id = o.user
         INNER JOIN user_class uc ON uc.user = u.id
@@ -52,6 +53,26 @@ class Order
         INNER JOIN pickup p ON p.id = o.pickup
         INNER JOIN product_order po ON po.order = o.id
         INNER JOIN product pr ON pr.id = po.product
+        GROUP BY c.id, o.id";
+        $stmt = $this->conn->query($query);
+        return $stmt;
+    }
+
+    function getArchiveBriefOrderOnStatus($status_ID) //Permette di ottenere l'ordine con diverse informazioni aggiuntive in base allo stato dell'ordine
+
+    {
+        $query =
+            "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", DATE_FORMAT(DATE(o.created), '%d-%m-%Y') AS \"order_creation_date\", TIME_FORMAT(b.time, '%H:%i') AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
+        FROM `order` o 
+        INNER JOIN user u ON u.id = o.user
+        INNER JOIN user_class uc ON uc.user = u.id
+        INNER JOIN class c ON c.id = uc.class
+        INNER JOIN break b ON b.id = o.break
+        INNER JOIN pickup p ON p.id = o.pickup
+        INNER JOIN product_order po ON po.order = o.id
+        INNER JOIN product pr ON pr.id = po.product
+        INNER JOIN `status` s ON s.id = o.status
+        WHERE s.id = $status_ID
         GROUP BY c.id, o.id";
         $stmt = $this->conn->query($query);
         return $stmt;
