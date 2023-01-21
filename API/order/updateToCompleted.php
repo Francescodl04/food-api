@@ -11,7 +11,6 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: PUT");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-header("Transfer-Encoding: chunked");
 
 include_once dirname(__FILE__) . '/../../COMMON/connect.php';
 include_once dirname(__FILE__) . '/../../MODEL/order.php';
