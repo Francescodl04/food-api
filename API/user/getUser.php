@@ -2,6 +2,7 @@
 require("../../COMMON/connect.php");
 require ('../../MODEL/user.php');
 header("Content-type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: *");
 
 if(!isset($_GET['id'])){
     http_response_code(400);
