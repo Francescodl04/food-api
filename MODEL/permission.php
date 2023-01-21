@@ -14,7 +14,7 @@ class Permission{
     public function getPermissionByUserID($id) // Ottiene la ricreazione che ha l'id passato alla funzione   
     {
         $query = "SELECT up.permission FROM $this->table_name p INNER JOIN $this->middle_table_name up ON p.id = up.permission WHERE up.user = $id";
-        echo($query);
+
         $stmt = $this->conn->query($query);
 
         return $stmt;
