@@ -45,7 +45,7 @@ class Order
     {
         $query =
             "SELECT o.id AS \"order_id\", CONCAT(u.name, ' ', u.surname) AS \"user_name_surname\", CONCAT( c.`year`, ' ', c.`section`) AS \"class\", p.name AS \"pickup_point\", DATE_FORMAT(DATE(o.created), '%d-%m-%Y') AS \"order_creation_date\", TIME_FORMAT(b.time, '%H:%i') AS \"pickup_time\", GROUP_CONCAT(pr.name SEPARATOR \", \") AS \"ordered_products\", SUM(pr.price) AS \"total_price\"
-        FROM `order` o 
+        FROM $this->table_name o 
         INNER JOIN user u ON u.id = o.user
         INNER JOIN user_class uc ON uc.user = u.id
         INNER JOIN class c ON c.id = uc.class
@@ -302,6 +302,21 @@ class Order
 
         }
         return $orders;
+    }
+
+    public function updateToCompleted($id)
+    {
+        $query = "UPDATE $this->table_name  o
+        INNER JOIN product_order po ON po.`order` = o.id
+        INNER JOIN product p ON p.id = po.product
+        INNER JOIN product_ingredient `pi` ON `pi`.product = p.id
+        INNER JOIN ingredient i ON i.id = `pi`.ingredient
+        SET o.status = 1, i.quantity = i.quantity - 1
+        WHERE o.id = $id";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
     }
 }
 ?>

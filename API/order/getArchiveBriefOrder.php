@@ -1,7 +1,7 @@
 <?php
 
 /**
- * API pervisualizzare un ordine con l'utente, la classe, data, ora, data e luogo di ritiro, prodotti ordinati e prezzo totale
+ * API per visualizzare un ordine con l'utente, la classe, data, ora, data e luogo di ritiro, prodotti ordinati e prezzo totale
  * Realizzato dal gruppo Rossi, Di Lena, Marchetto G., Lavezzi, Ferrari
  * Classe 5F
  * A.S. 2022-2023
@@ -9,6 +9,9 @@
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once dirname(__FILE__) . '/../../COMMON/connect.php';
 include_once dirname(__FILE__) . '/../../MODEL/order.php';
@@ -26,7 +29,8 @@ if (isset($_GET['status_ID'])) {
     $stmt = $order->getArchiveBriefOrder();
 }
 
-if ($stmt->num_rows > 0) {
+if ($stmt->num_rows > 0) 
+{
     $order_first_array = array();
     $class_orders = array();
     $order_final_array = array();
@@ -68,9 +72,10 @@ if ($stmt->num_rows > 0) {
     $json = json_encode($order_final_array);
     echo $json;
     return $json;
-} else {
+}
+else {
     echo "No record";
-    http_response_code(204);
+    http_response_code(200);
 }
 
 ?>
