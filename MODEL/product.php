@@ -121,6 +121,15 @@ class ProductController extends BaseController
         $this->CheckProduct();
     }
 
+    public function updateProduct($id, $name, $price, $quantity){
+        $sql = "UPDATE product p
+                SET p.name = $name, p.price = $price, p.quantity = $quantity
+                WHERE p.id = $id";
+
+        $stmt = $this->conn->query($sql);
+        return $stmt;
+    }
+
     public function DeleteProduct($product_ID)
     {
         $sql = "update product p
