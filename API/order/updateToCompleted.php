@@ -20,7 +20,9 @@ $db = $database->connect();
 
 $order = new Order($db);
 
-$data = json_decode(file_get_contents("php://input"));
+$data = file_get_contents("php://input");
+
+var_dump($data);
 
 if (!empty($data)) {
     if ($order->updateToCompleted($data->order_ID) > 0) {
